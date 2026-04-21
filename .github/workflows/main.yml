@@ -25,14 +25,18 @@ jobs:
         run: pip install yt-dlp
 
 
+
       - name: Download YouTube Video (480p)
         run: |
           set -x
           yt-dlp \
-            -f "bestvideo[height<=480]+bestaudio/best[height<=480]" \
+            --verbose \
+            --force-ipv4 \
+            --extractor-args "youtube:player_client=android" \
+            -f "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]/best" \
+            --merge-output-format mp4 \
             -o "video_%(title)s.%(ext)s" \
             "${{ github.event.inputs.video_url }}"
-
 
 
       - name: Create Release
