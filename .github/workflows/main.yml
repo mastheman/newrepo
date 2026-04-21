@@ -24,9 +24,9 @@ jobs:
       - name: Install yt-dlp
         run: pip install yt-dlp
 
-      - name: Download YouTube Video (480p)
+      - name: Download YouTube Video (360p)
         run: |
-          yt-dlp -f "480" -o "video_%(title)s.mp4" "${{ github.event.inputs.video_url }}"
+          yt-dlp -f "360" -o "video_%(title)s.mp4" "${{ github.event.inputs.video_url }}"
 
       - name: Create Release
         id: create_release
