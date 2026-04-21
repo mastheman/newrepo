@@ -24,6 +24,16 @@ jobs:
       - name: Install yt-dlp
         run: pip install yt-dlp
 
+
+      - name: Download YouTube Video (480p)
+        run: |
+          set -x
+          yt-dlp \
+            -f "bestvideo[height<=480]+bestaudio/best[height<=480]" \
+            -o "video_%(title)s.%(ext)s" \
+            "${{ github.event.inputs.video_url }}"
+
+
       - name: Download YouTube Video (360p)
         run: |
           yt-dlp -f "360" -o "video_%(title)s.mp4" "${{ github.event.inputs.video_url }}"
