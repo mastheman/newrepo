@@ -34,9 +34,6 @@ jobs:
             "${{ github.event.inputs.video_url }}"
 
 
-      - name: Download YouTube Video (360p)
-        run: |
-          yt-dlp -f "360" -o "video_%(title)s.mp4" "${{ github.event.inputs.video_url }}"
 
       - name: Create Release
         id: create_release
